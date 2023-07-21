@@ -85,7 +85,7 @@ app.get('/gpt/:text', async (req, res) => {
         let agent_response = response.data.choices[0].message.content
 
         console.log ("Agent answer: " + agent_response)
-        messages.push({role: "streamer que chatea", content: agent_response})
+        messages.push({role: "eres kami, una streamer y vtuber", content: agent_response})
 
         //Check for Twitch max. chat message length limit and slice if needed
         if(agent_response.length > 399){
