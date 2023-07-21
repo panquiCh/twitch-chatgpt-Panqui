@@ -6,10 +6,10 @@ const { promisify } = require('util')
 const readFile = promisify(fs.readFile)
 const GPT_MODE = process.env.GPT_MODE
 
-let file_context = "You are a helpful Twitch Chatbot."
+let file_context = "chica timida que le gusta hacer directos"
 
 const messages = [
-  {role: "system", content: "You are a helpful Twitch Chatbot."}
+  {role: "system", content: "chica timida que le gusta hacer directos"}
 ];
 
 console.log("GPT_MODE is " + GPT_MODE)
@@ -85,7 +85,7 @@ app.get('/gpt/:text', async (req, res) => {
         let agent_response = response.data.choices[0].message.content
 
         console.log ("Agent answer: " + agent_response)
-        messages.push({role: "assistant", content: agent_response})
+        messages.push({role: "chica timida que hace streams", content: agent_response})
 
         //Check for Twitch max. chat message length limit and slice if needed
         if(agent_response.length > 399){
@@ -102,7 +102,7 @@ app.get('/gpt/:text', async (req, res) => {
     } else {
       //PROMPT MODE EXECUTION
       const prompt = file_context + "\n\nQ:" + text + "\nA:";
-      console.log("User Input: " + text)
+      console.log(" Input: " + text)
 
       const response = await openai.createCompletion({
         model: "text-davinci-003",
