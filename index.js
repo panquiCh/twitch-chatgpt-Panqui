@@ -59,7 +59,7 @@ app.get('/gpt/:text', async (req, res) => {
       //CHAT MODE EXECUTION
 
       //Add user message to  messages
-      messages.push({role: "mensaje del chat", content: text})
+      messages.push({role: "mensaje", content: text})
       //Check if message history is exceeded
       console.log("Conversations in History: " + ((messages.length / 2) -1) + "/" + process.env.HISTORY_LENGTH)
       if(messages.length > ((process.env.HISTORY_LENGTH * 2) + 1)) {
@@ -85,7 +85,7 @@ app.get('/gpt/:text', async (req, res) => {
         let agent_response = response.data.choices[0].message.content
 
         console.log ("Agent answer: " + agent_response)
-        messages.push({role: "chica timida streamer", content: agent_response})
+        messages.push({role: "streamer", content: agent_response})
 
         //Check for Twitch max. chat message length limit and slice if needed
         if(agent_response.length > 399){
