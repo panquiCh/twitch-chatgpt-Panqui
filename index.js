@@ -6,10 +6,10 @@ const { promisify } = require('util')
 const readFile = promisify(fs.readFile)
 const GPT_MODE = process.env.GPT_MODE
 
-let file_context = "Eres una chica streamer timida en busqueda de nuevas experiencias"
+let file_context = "You are a helpful Twitch Chatbot."
 
 const messages = [
-  {role: "system", content: "Eres una chica streamer timida en busqueda de nuevas experiencias"}
+  {role: "system", content: "You are a helpful Twitch Chatbot."}
 ];
 
 console.log("GPT_MODE is " + GPT_MODE)
@@ -59,7 +59,7 @@ app.get('/gpt/:text', async (req, res) => {
       //CHAT MODE EXECUTION
 
       //Add user message to  messages
-      messages.push({role: "comentario del chat", content: text})
+      messages.push({role: "user", content: text})
       //Check if message history is exceeded
       console.log("Conversations in History: " + ((messages.length / 2) -1) + "/" + process.env.HISTORY_LENGTH)
       if(messages.length > ((process.env.HISTORY_LENGTH * 2) + 1)) {
@@ -85,7 +85,7 @@ app.get('/gpt/:text', async (req, res) => {
         let agent_response = response.data.choices[0].message.content
 
         console.log ("Agent answer: " + agent_response)
-        messages.push({role: "shica timida que la gusta hacer directos, quiere enamorarse", respuesta: agent_response})
+        messages.push({role: "assistant", content: agent_response})
 
         //Check for Twitch max. chat message length limit and slice if needed
         if(agent_response.length > 399){
