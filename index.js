@@ -123,7 +123,7 @@ app.get('/gpt/:text', async (req, res) => {
             console.log ("Sliced Agent answer: " + agent_response)
           }
 
-          res.send("@|＠" + agent_response)
+          res.send("@|＠ " + agent_response)
       } else {
           res.send("Something went wrong. Try again later!")
       }
